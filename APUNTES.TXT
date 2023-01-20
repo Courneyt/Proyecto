@@ -1,6 +1,8 @@
 https://www.youtube.com/watch?v=MLaBYDgs0hc
 https://freefrontend.com/bootstrap-galleries/
 https://www.youtube.com/watch?v=SSPdr2jHtIs
+Estrellas:
+https://www.youtube.com/watch?v=KcwqodH4bGU
 
 LA PRIMERA FOTO DEL CONTENEDOR NO DEBE TENER PADDING
  Quitar la barra a las iamgenes
