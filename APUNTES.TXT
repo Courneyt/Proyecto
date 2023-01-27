@@ -4,5 +4,9 @@ https://www.youtube.com/watch?v=SSPdr2jHtIs
 Estrellas:
 https://www.youtube.com/watch?v=KcwqodH4bGU
 
+
+https://getbootstrap.com/docs/5.0/layout/columns/
 LA PRIMERA FOTO DEL CONTENEDOR NO DEBE TENER PADDING
  Quitar la barra a las iamgenes
+
+ DImensiones de las Fotós

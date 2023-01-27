@@ -35,15 +35,16 @@ footer {
 }
 
 #dibujosLandscape {
-    max-width: 600px;
-    max-height: 500px;
+    max-height: 400px;
 }
 
 #dibujosPortrait {
-    max-width: 400px;
-    max-height: 500px;
+    max-height: 800px;
 }
 
+/* .contenedorFotos>div{
+    max-height: fit-content;
+} */
 
 .contenedorD {
     margin-right: 24px;
@@ -81,11 +82,11 @@ footer {
     max-width: 400px;
 }
 
-.modal-content{
+.modal-content {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    background-color:#131313F2;
+    background-color: #131313F2;
     border-color: white;
-    color:#F0EEEE
+    color: #F0EEEE
 }
 
 #titlePhoto {
@@ -102,19 +103,20 @@ footer {
     font-weight: bold;
 }
 
-.contenedorModalInfo>div>input, .contenedorModalImagen>div>input {
-    color:#F0EEEE;
+.contenedorModalInfo>div>input,
+.contenedorModalImagen>div>input {
+    color: #F0EEEE;
 }
 
-.contenedorModalInfo{
-   margin-top: 70px; 
+.contenedorModalInfo {
+    margin-top: 70px;
 }
 
-#puntuacion{
+#puntuacion {
     text-align: end;
 }
 
-.btn-close{
+.btn-close {
     background-image: url(close.png);
 }
 
