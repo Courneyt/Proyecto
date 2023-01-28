@@ -65,9 +65,19 @@ footer {
     max-height: 200px;
 }
 
+.contFotografo>div>div>input,
+.contFotografo>div {
+    color: #F0EEEE;
+}
+
 .pensamiento {
     text-align: justify;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+.btGaleria{
+    background-color: grey;
+    border-color: grey;
 }
 
 .itemBG {
@@ -116,6 +126,6 @@ footer {
     background-image: url(close.png);
 }
 
-/* .dropdown > button{
-    background-color: black;
-} */
+.form-label {
+    margin-bottom: 0px;
+}
