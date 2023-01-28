@@ -35,14 +35,9 @@
               <a class="nav-link" href="fotografos.html">Fotógrafos</a>
             </li>
           </ul>
-
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAltaFt">
+          <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalAltaFt">
             Subir Foto
           </button>
-          <!-- <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Buscar</button>
-          </form> -->
         </div>
       </div>
     </nav>
@@ -57,7 +52,7 @@
         </div>
         <div class="modal-body">
           <div class="d-flex flex-row">
-            <div class="d-flex flex-column me-5">
+            <div class="d-flex flex-column ms-5 me-5">
               <div class="mb-3">
                 <label for="frmNombre" class="form-label">Título</label>
                 <input type="text" class="form-control" id="frmTitulo" placeholder="Introduzca un título." required
@@ -82,7 +77,7 @@
                   placeholder="Introduzca una pequeña descripción."></textarea>
               </div>
             </div>
-            <div class=" d-flex flex-column ms-5">
+            <div class=" d-flex flex-column ms-5 me-5">
               <div class="mb-3">
                 <label for="frmCamera" class="form-label">Cámara</label>
                 <select id="frmCamera" class="form-select" aria-label="Cámara" required>
@@ -108,7 +103,7 @@
               </div>
               <div class="mb-3">
                 <label for="frmCat" class="form-label">Categorías</label>
-                <div class="d-flex flex-row checkCat">
+                <div class="d-flex flex-row checkCat ms-3 me-3">
                   <div class="col me-2">
                     <div id="frmCat" class="form-check">
                       <input class="form-check-input" type="checkbox" value="" id="ninguna" checked>
@@ -156,6 +151,14 @@
                   <label for="frmFile" class="form-label">Imagen</label>
                   <input class="form-control" type="file" id="frmFile">
                 </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                  Cerrar
+                </button>
+                <button id="btnGuardar" type="button" class="btn btn-success" disabled>
+                  Guardar
+                </button>
               </div>
             </div>
           </div>
