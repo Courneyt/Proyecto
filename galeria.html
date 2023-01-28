@@ -36,7 +36,7 @@
             </li>
           </ul>
 
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAltaFt">
             Subir Foto
           </button>
           <!-- <form class="d-flex" role="search">
@@ -47,19 +47,135 @@
       </div>
     </nav>
   </header>
+  <div id=modalAltaFt class="modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Alta de Foto</h5>
+          <button type="button" class="btn-close fa-duotone fa-xmark" data-bs-dismiss="modal"
+            aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex flex-row">
+            <div class="d-flex flex-column me-5">
+              <div class="mb-3">
+                <label for="frmNombre" class="form-label">Título</label>
+                <input type="text" class="form-control" id="frmTitulo" placeholder="Introduzca un título." required
+                  minlength="1" />
+                <div class="invalid-feedback">Introduzca un titulo correcto</div>
+              </div>
+              <div class="mb-3">
+                <label for="frmFtGrafo" class="form-label">Fotógrafo</label>
+                <input type="text" class="form-control" id="frmFtGrafo" placeholder="Autor de la foto." required
+                  minlength="1" />
+                <div class="invalid-feedback">Introduzca un titulo correcto</div>
+              </div>
+              <div class="mb-3">
+                <label for="frmUbicacion" class="form-label">Ubicación</label>
+                <input type="text" class="form-control" id="frmUbicacion" placeholder="Ubicación de la foto." required
+                  minlength="1" />
+                <div class="invalid-feedback">Introduzca un titulo correcto</div>
+              </div>
+              <div class="mb-3">
+                <label for="frmDesc" class="form-label">Descripción</label>
+                <textarea class="form-control" id="frmDesc" rows="3"
+                  placeholder="Introduzca una pequeña descripción."></textarea>
+              </div>
+            </div>
+            <div class=" d-flex flex-column ms-5">
+              <div class="mb-3">
+                <label for="frmCamera" class="form-label">Cámara</label>
+                <select id="frmCamera" class="form-select" aria-label="Cámara" required>
+                  <option value="" selected>Elija una cámara</option>
+                  <option value="Canon EOS 4000D">Canon EOS 4000D</option>
+                  <option value="Canon EOS 5D Mark IV">Canon EOS 5D Mark IV</option>
+                  <option value="Canon EOS 2000D">Canon EOS 2000D</option>
+                  <option value="Sony Alpha A3000">Sony Alpha A3000</option>
+                  <option value="Sony Evil Alpha 7 M3">Sony Evil Alpha 7 M3</option>
+                </select>
+                <div class="invalid-feedback">Elija una cámara</div>
+              </div>
+              <div class="mb-3">
+                <label for="frmLens" class="form-label">Lente</label>
+                <select id="frmLens" class="form-select" aria-label="Lente" required>
+                  <option value="" selected>Elija un lente</option>
+                  <option value="Canon 50mm 1.8">Canon 50mm 1.8</option>
+                  <option value="Canon EF 100mm F2/8">Canon EF 100mm F2/8</option>
+                  <option value="Canon EF135mm F/2">Canon EF135mm F/2</option>
+                  <option value="Sony DT 18-55mm f/3.5">Sony DT 18-55mm f/3.5</option>
+                </select>
+                <div class="invalid-feedback">Elija una cámara</div>
+              </div>
+              <div class="mb-3">
+                <label for="frmCat" class="form-label">Categorías</label>
+                <div class="d-flex flex-row checkCat">
+                  <div class="col me-2">
+                    <div id="frmCat" class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="ninguna" checked>
+                      <label class="form-check-label" for="ninguna">
+                        Ninguna
+                      </label>
+                    </div>
+                    <div id="frmCat" class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="retrato">
+                      <label class="form-check-label" for="retrato">
+                        Retrato
+                      </label>
+                    </div>
+                    <div id="frmCat" class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="paisaje">
+                      <label class="form-check-label" for="paisaje">
+                        Paisaje
+                      </label>
+                    </div>
+                  </div>
+                  <di class="col">
+                    <div id="frmCat" class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="abstracto">
+                      <label class="form-check-label" for="abstracto">
+                        Abstracto
+                      </label>
+                    </div>
+                    <div id="frmCat" class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="macro">
+                      <label class="form-check-label" for="macro">
+                        Macro
+                      </label>
+                    </div>
+                    <div id="frmCat" class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="urbano">
+                      <label class="form-check-label" for="urbano">
+                        Urbano
+                      </label>
+                    </div>
+                  </di>
+                </div>
+              </div>
+              <div class="mb-3">
+                <form action="/uploadphoto" enctype="multipart/form-data" method="post">
+                  <label for="frmFile" class="form-label">Imagen</label>
+                  <input class="form-control" type="file" id="frmFile">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <main class="flex-grow-1 row m-0 align-items-start">
     <section class="row mt-1 mb-2">
       <div class="dropdown p-1">
         <button class="btn btn-secondary dropdown-toggle bg-dark float-end" type="button" data-bs-toggle="dropdown"
           aria-expanded="false" data-bs-auto-close="outside">
-          Tipo
+          Categoría
         </button>
         <ul class="dropdown-menu">
           <li>
             <a class="dropdown-item" href="#">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-              <label class="form-check-label" for="flexCheckChecked">
-                Todos
+              <input class="form-check-input" type="checkbox" value="" id="todas" checked>
+              <label class="form-check-label" for="todas">
+                Todas
               </label>
             </a>
           </li>
@@ -210,9 +326,8 @@
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-    crossorigin="anonymous">
-  </script>
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>
