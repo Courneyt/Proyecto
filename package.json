@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "comp-fotos": "pug -c -D -n plantillaGaleria -o public plantillaGaleria.pug"
   },
   "repository": {
     "type": "git",

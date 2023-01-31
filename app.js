@@ -13,7 +13,7 @@ app.use((err, req, res, next) => {
   res.status(500).send(err);
 });
 
-app.get("/wines", async (req, res) => {
+app.get("/fotos", async (req, res) => {
   let params = {
     desde: req.query.desde,
     hasta: req.query.hasta,
