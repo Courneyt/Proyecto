@@ -15,35 +15,32 @@ app.use((err, req, res, next) => {
 
 app.get("/fotos", async (req, res) => {
   let params = {
-    desde: req.query.desde,
-    hasta: req.query.hasta,
-    tipos: req.query.tipos.split(","),
-    busqueda: req.query.busqueda,
+    categorias: req.query.categorias.split(","),
   };
   res.json(await db.find(params));
 });
 
-app.get("/wines/:id", async (req, res) => {
-  const wine = await db.findById(req.params.id);
-  if (wine) res.json(wine);
-  else res.status(404).send(`No existe un vino con ID=${req.params.id}.`);
+app.get("/fotos/:id", async (req, res) => {
+  const foto = await db.findPhotoById(req.params.id);
+  if (foto) res.json(wine);
+  else res.status(404).send(`No existe una foto con ID=${req.params.id}.`);
 });
 
-app.post("/wines", async (req, res) => {
-  const wine = await db.save(req.body);
-  if (wine) res.location(`/wines/${wine._id}`).status(201).send("Vino creado");
-  else res.status(400).send("Valores incorrectos para crear un vino.");
+app.post("/fotos", async (req, res) => {
+  const foto = await db.save(req.body);
+  if (foto) res.location(`/fotos/${foto._id}`).status(201).send("Foto subida");
+  else res.status(400).send("Error al subir una foto.");
 });
 
-app.patch("/wines/:id", async (req, res) => {
-  const updatedWine = await db.rate(req.params.id, req.body.score);
-  if (updatedWine) res.sendStatus(204);
-  else res.status(404).send(`No existe un vino con ID=${req.params.id}.`);
+app.patch("/fotos/:id", async (req, res) => {
+  const updatedFoto = await db.rate(req.params.id, req.body.score);
+  if (updatedFoto) res.sendStatus(204);
+  else res.status(404).send(`No existe una foto con ID=${req.params.id}.`);
 });
 
-app.delete("/wines/:id", async (req, res) => {
+app.delete("/fotos/:id", async (req, res) => {
   if (await db.delete(req.params.id)) res.sendStatus(204);
-  else res.status(404).send(`No existe un vino con ID=${req.params.id}.`);
+  else res.status(404).send(`No existe una foto con ID=${req.params.id}.`);
 });
 
 db.connect().then(() => {

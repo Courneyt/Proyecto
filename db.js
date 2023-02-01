@@ -8,7 +8,7 @@ const PhotoSchema = new mongoose.Schema(
 			required: true,
 			trim: true,
 		},
-		types: {
+		category: {
 			type: [String],
 			validate: {
 				validator: function (value) {
@@ -18,7 +18,7 @@ const PhotoSchema = new mongoose.Schema(
 
 					return typeValid.includes(true)
 				},
-				message: 'Se ha introducido un tipo inválido.'
+				message: 'Se ha introducido una categoría inválida.'
 			}
 		},
 
@@ -162,31 +162,10 @@ exports.close = async function () {
 	await mongoose.disconnect();
 };
 
-/* exports.createPhoto = async function (photoData) {
-	const photo = new Photo(photoData);
-	return await photo.save();
-}
-*/
-/* exports.createPhotographer = async function (photograferData) {
-	const photographer = new Photographer(photograferData);
-	return await photographer.save();
-} 
- */
 exports.find = async function (params) {
 	const query = Photo.find()
 		.where("types")
 		.in(params.tipos);
-	const palabras = params.busqueda
-		.split(" ")
-		.map((s) => s.trim())
-		.filter((s) => s.length > 0);
-	if (palabras.length > 0) {
-		let patrones = [];
-		palabras.forEach((palabra) => {
-			patrones.push({ name: new RegExp(palabra, "i") });
-		});
-		query.or(patrones);
-	}
 	return await query.exec();
 };
 
