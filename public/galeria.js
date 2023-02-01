@@ -26,9 +26,8 @@ const frmUbicacion = document.getElementById("frmUbicacion");
 const frmDesc = document.getElementById("frmDesc");
 const frmCamera = document.getElementById("frmCamera");
 const frmLens = document.getElementById("frmLens");
-// const frmTipo = document.getElementById("frmTipo");
-// const frmAnyo = document.getElementById("frmAnyo");
-// const panelPuntos = document.getElementById("panelPuntos");
+const frmCat = document.getElementsByClassName("frmCkCat");
+
 
 // [frmNombre, frmTipo, frmAnyo].forEach((i) => {
 //   i.addEventListener("blur", () => {
@@ -84,11 +83,18 @@ const frmLens = document.getElementById("frmLens");
 btnGuardar.addEventListener("click", async () => {
   modal.hide();
   const id = btnGuardar.dataset.id;
-  
+  const categorias = [];
+  for (let casilla of frmCat) {
+    if (casilla.checked) categorias.push(casilla.name);
+  }
     const photoData = {
-      title: frmNombre.value,
-      type: frmTipo.value,
-      year: frmAnyo.value,
+      title: frmTitulo.value,
+      photographer: frmFtGrafo.value,
+      location:frmUbicacion.value,
+      description:frmDesc.value,
+      camera:frmCamera.value,
+      lens:frmLens.value,
+      category:categorias,
     };
     await savePhoto(photoData);
   
@@ -128,7 +134,7 @@ function clicOtraCategoria(evt) {
 async function cargarGaleria() {
   const categorias = [];
   for (let casilla of otrasCasillas) {
-    if (casilla.checked) tipos.push(casilla.name);
+    if (casilla.checked) categorias.push(casilla.name);
   }
   cuerpoTabla.innerHTML = plantillaGaleria({
     fotos: await findPhotos(categorias),

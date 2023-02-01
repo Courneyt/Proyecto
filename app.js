@@ -39,7 +39,7 @@ app.patch("/fotos/:id", async (req, res) => {
 });
 
 app.delete("/fotos/:id", async (req, res) => {
-  if (await db.delete(req.params.id)) res.sendStatus(204);
+  if (await db.deletePhoto(req.params.id)) res.sendStatus(204);
   else res.status(404).send(`No existe una foto con ID=${req.params.id}.`);
 });
 

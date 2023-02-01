@@ -197,7 +197,7 @@ exports.ratePhoto = async function (photoId, score) {
 
 //********************************Borrar Foto********************************************/
 
-exports.deletePhotoById = async function (photoId) {
+exports.deletePhoto = async function (photoId) {
 	return (await Photo.deleteOne({ _id: photoId })).deletedCount == 1;
 };
 
