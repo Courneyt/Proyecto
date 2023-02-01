@@ -15,7 +15,7 @@ app.use((err, req, res, next) => {
 
 app.get("/fotos", async (req, res) => {
   let params = {
-    categorias: req.query.categorias.split(","),
+    category: req.query.category.split(","),
   };
   res.json(await db.find(params));
 });
@@ -27,7 +27,7 @@ app.get("/fotos/:id", async (req, res) => {
 });
 
 app.post("/fotos", async (req, res) => {
-  const foto = await db.save(req.body);
+  const foto = await db.savePhoto(req.body);
   if (foto) res.location(`/fotos/${foto._id}`).status(201).send("Foto subida");
   else res.status(400).send("Error al subir una foto.");
 });

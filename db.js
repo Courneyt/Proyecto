@@ -22,22 +22,22 @@ const PhotoSchema = new mongoose.Schema(
 			}
 		},
 
-		"location": {
+		location: {
 			type: String,
 			trim: true,
 		},
-		"lens": {
+		lens: {
 			type: String,
 			required: true,
 			enum: ["Canon 50mm 1.8", "Canon EF 100mm F2/8", "Canon EF135mm F/2", "Sony DT 18-55mm f/3.5"],
 		},
-		"camera": {
+		camera: {
 			type: String,
 			required: true,
 			enum: ["Canon EOS 4000D", "Canon EOS 5D Mark IV", "Canon EOS 2000D", "Sony Alpha A3000", "Sony Evil Alpha 7 M3"],
 
 		},
-		"description": {
+		description: {
 			type: String,
 			trim: true,
 		},
@@ -152,20 +152,22 @@ const PhotographerSchema = new mongoose.Schema(
 const Photographer = new mongoose.model("Photographer", PhotographerSchema);
 const Photo = new mongoose.model("Photo", PhotoSchema);
 
+// ***********Conexión*********************************
 exports.connect = async function () {
 	mongoose.set("strictQuery", false);
 	await mongoose.connect(process.env.MONGODB_URL)
 };
 
-
 exports.close = async function () {
 	await mongoose.disconnect();
 };
 
-exports.find = async function (params) {
+//***********************Encontrar Fotos***************************/
+
+exports.findPhoto = async function (params) {
 	const query = Photo.find()
-		.where("types")
-		.in(params.tipos);
+		.where("category")
+		.in(params.category);
 	return await query.exec();
 };
 
@@ -174,9 +176,7 @@ exports.findPhotoById = async function (photoId) {
 	return await Photo.findById(photoId);
 };
 
-exports.findPhotographersByName = async function (name) {
-	return await Photographer.find({ "name": name });
-};
+//************************* Guardar Fotos ***************************************/
 
 exports.savePhoto = async function (photoData) {
 	try {
@@ -187,6 +187,27 @@ exports.savePhoto = async function (photoData) {
 	}
 };
 
+//***************************Rate Fotos*************************************/
+
+exports.ratePhoto = async function (photoId, score) {
+	const photo = await Photo.findById(photoId);
+	if (photo) return await photo.ratePhoto(score);
+	else return undefined;
+};
+
+//********************************Borrar Foto********************************************/
+
+exports.deletePhotoById = async function (photoId) {
+	return (await Photo.deleteOne({ _id: photoId })).deletedCount == 1;
+};
+
+
+
+exports.findPhotographersByName = async function (name) {
+	return await Photographer.find({ "name": name });
+};
+
+
 exports.savePhotographer = async function (photographerData) {
 	try {
 		const photographer = new Photographer(photographerData);
@@ -196,24 +217,11 @@ exports.savePhotographer = async function (photographerData) {
 	}
 };
 
-exports.ratePhoto = async function (photoId, score) {
-	const photo = await Photo.findById(photoId);
-	if (photo) return await photo.ratePhoto(score);
-	else return undefined;
-};
 
 exports.ratePhotographer = async function (photographerId, score) {
 	const photographer = await Photographer.findById(photographerId);
 	if (photographer) return await photographer.ratePhotographer(score);
 	else return undefined;
-};
-
-exports.deletePhotoById = async function (photoId) {
-	return (await Photo.deleteOne({ _id: photoId })).deletedCount == 1;
-};
-
-exports.deletePhotoByType = async function (type) {
-	return (await Photo.deleteMany({ types: type }));
 };
 
 exports.updatePhotographer = async function (photographerId, name, phone, email) {
