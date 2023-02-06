@@ -17,8 +17,9 @@ const mostrarAlerta = (msg) => {
 };
 
 // ---- Modal -----
-// const modal = new bootstrap.Modal(document.getElementById("detallesVino"));
+const modal = new bootstrap.Modal(document.getElementById("modalAltaFt"));
 const btnGuardar = document.getElementById("btnGuardar");
+
 //Datos Modal
 const frmTitulo = document.getElementById("frmTitulo");
 const frmFtGrafo = document.getElementById("frmFtGrafo");
@@ -52,36 +53,35 @@ const frmCat = document.getElementsByClassName("frmCkCat");
 //   });
 
 // ---- Botón de crear -----
-// document.getElementById("btnNuevo").addEventListener("click", abrirModal);
+// document.getElementById("btnSubir").addEventListener("click", abrirModal);
 
-// ---- Función que edita o que crea -----
+// // ---- Función que edita o que crea -----
 // async function abrirModal(evt) {
-//   if (evt.target.classList.contains("editar")) {
-//     // Edición
-//     [frmNombre, frmTipo, frmAnyo].forEach((i) => (i.disabled = true));
-//     panelPuntos.classList.remove("d-none");
-//     const id = (btnGuardar.dataset.id = evt.target.dataset.id);
-//     const wine = await findWine(id);
-//     frmNombre.value = wine.name;
-//     frmTipo.value = wine.type;
-//     frmAnyo.value = wine.year;
-//     btnGuardar.disabled = false;
-//   } else {
+//   // if (evt.target.classList.contains("editar")) {
+//   //   // Edición
+//   //   [frmNombre, frmTipo, frmAnyo].forEach((i) => (i.disabled = true));
+//   //   panelPuntos.classList.remove("d-none");
+//   //   const id = (btnGuardar.dataset.id = evt.target.dataset.id);
+//   //   const wine = await findWine(id);
+//   //   frmNombre.value = wine.name;
+//   //   frmTipo.value = wine.type;
+//   //   frmAnyo.value = wine.year;
+//   //   btnGuardar.disabled = false;
+//   // } else {
 //     // Creación
-//     [frmNombre, frmTipo, frmAnyo].forEach((i) => {
-//       i.disabled = false;
-//       i.value = "";
-//     });
-//     panelPuntos.classList.add("d-none");
+//     // [frmNombre, frmTipo, frmAnyo].forEach((i) => {
+//     //   i.disabled = false;
+//     //   i.value = "";
+//     // });
+//     // panelPuntos.classList.add("d-none");
 //     btnGuardar.disabled = true;
 //     btnGuardar.dataset.id = "";
-//   }
+//   // }
 //   modal.show();
 // }
 
 // ---- Botón de guardar del modal -----
 btnGuardar.addEventListener("click", async () => {
-  modal.hide();
   const id = btnGuardar.dataset.id;
   const categorias = [];
   for (let casilla of frmCat) {
@@ -98,54 +98,54 @@ btnGuardar.addEventListener("click", async () => {
     };
     await savePhoto(photoData);
   
-  await cargarGaleria();
+  // await cargarGaleria();
 });
 
-// ---- Filtro por categoria de fotos -----
-casillaTodas.addEventListener("click", clicEnTodas);
-for (let casilla of otrasCasillas) {
-  casilla.addEventListener("click", clicOtraCategoria);
-}
-function clicEnTodas(evt) {
-  let estado = casillaTodas.checked;
-  for (let casilla of otrasCasillas) {
-    casilla.checked = estado;
-  }
-  cargarGaleria();
-}
-function clicOtraCategoria(evt) {
-  let estado = evt.target.checked;
-  if (estado == false) {
-    casillaTodas.checked = false;
-  } else {
-    for (let casilla of otrasCasillas) {
-      if (casilla.checked == false) {
-        casillaTodas.checked = false;
-        cargarGaleria();
-        return;
-      }
-    }
-    casillaTodas.checked = true;
-  }
-  cargarGaleria();
-}
+// // ---- Filtro por categoria de fotos -----
+// casillaTodas.addEventListener("click", clicEnTodas);
+// for (let casilla of otrasCasillas) {
+//   casilla.addEventListener("click", clicOtraCategoria);
+// }
+// function clicEnTodas(evt) {
+//   let estado = casillaTodas.checked;
+//   for (let casilla of otrasCasillas) {
+//     casilla.checked = estado;
+//   }
+//   cargarGaleria();
+// }
+// function clicOtraCategoria(evt) {
+//   let estado = evt.target.checked;
+//   if (estado == false) {
+//     casillaTodas.checked = false;
+//   } else {
+//     for (let casilla of otrasCasillas) {
+//       if (casilla.checked == false) {
+//         casillaTodas.checked = false;
+//         cargarGaleria();
+//         return;
+//       }
+//     }
+//     casillaTodas.checked = true;
+//   }
+//   cargarGaleria();
+// }
 
-// ---- Recarga la galeria, aplicando filtro -----
-async function cargarGaleria() {
-  const categorias = [];
-  for (let casilla of otrasCasillas) {
-    if (casilla.checked) categorias.push(casilla.name);
-  }
-  cuerpoTabla.innerHTML = plantillaGaleria({
-    fotos: await findPhotos(categorias),
-  });
-}
+// // ---- Recarga la galeria, aplicando filtro -----
+// async function cargarGaleria() {
+//   const categorias = [];
+//   for (let casilla of otrasCasillas) {
+//     if (casilla.checked) categorias.push(casilla.name);
+//   }
+//   cuerpoTabla.innerHTML = plantillaGaleria({
+//     fotos: await findPhotos(categorias),
+//   });
+// }
 
-cargarGaleria();
+// cargarGaleria();
 
 // ---- Fetch ------
 async function enviarFetch(url, metodo = "GET", body) {
-  cargador.style.display = "block";
+  // cargador.style.display = "block";
   try {
     let opts = { method: metodo };
     if (body) {
@@ -162,7 +162,7 @@ async function enviarFetch(url, metodo = "GET", body) {
   } catch (err) {
     mostrarAlerta("Hubo un problema: " + err);
   } finally {
-    cargador.style.display = "none";
+    // cargador.style.display = "none";
   }
 }
 
