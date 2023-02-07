@@ -54,35 +54,34 @@
           <form action="/upload" enctype="multipart/form-data" method="post">
             <div class="d-flex flex-row">
               <div class="d-flex flex-column ms-5 me-5">
-
                 <div class="mb-3">
                   <label for="frmTitulo" class="form-label">Título</label>
-                  <input type="text" class="form-control" id="frmTitulo" placeholder="Introduzca un título." required
+                  <input type="text" class="form-control" name="frmTitle" id="frmTitulo" placeholder="Introduzca un título." required
                     minlength="1" />
                   <div class="invalid-feedback">Introduzca un titulo correcto</div>
                 </div>
                 <div class="mb-3">
                   <label for="frmFtGrafo" class="form-label">Fotógrafo</label>
-                  <input type="text" class="form-control" id="frmFtGrafo" placeholder="Autor de la foto." required
+                  <input type="text" class="form-control" name="frmPhotographer" id="frmFtGrafo" placeholder="Autor de la foto." required
                     minlength="1" />
                   <div class="invalid-feedback">Introduzca un titulo correcto</div>
                 </div>
                 <div class="mb-3">
                   <label for="frmUbicacion" class="form-label">Ubicación</label>
-                  <input type="text" class="form-control" id="frmUbicacion" placeholder="Ubicación de la foto." required
+                  <input type="text" class="form-control" name="frmLocation" id="frmUbicacion" placeholder="Ubicación de la foto." required
                     minlength="1" />
                   <div class="invalid-feedback">Introduzca un titulo correcto</div>
                 </div>
                 <div class="mb-3">
                   <label for="frmDesc" class="form-label">Descripción</label>
-                  <textarea class="form-control" id="frmDesc" rows="3"
+                  <textarea class="form-control" name="frmDescription" id="frmDesc" rows="3"
                     placeholder="Introduzca una pequeña descripción."></textarea>
                 </div>
               </div>
               <div class=" d-flex flex-column ms-5 me-5">
                 <div class="mb-3">
                   <label for="frmCamera" class="form-label">Cámara</label>
-                  <select id="frmCamera" class="form-select" aria-label="Cámara" required>
+                  <select id="frmCamera" name="frmCamera" class="form-select" aria-label="Cámara" required>
                     <option value="" selected>Elija una cámara</option>
                     <option value="Canon EOS 4000D">Canon EOS 4000D</option>
                     <option value="Canon EOS 5D Mark IV">Canon EOS 5D Mark IV</option>
@@ -94,7 +93,7 @@
                 </div>
                 <div class="mb-3">
                   <label for="frmLens" class="form-label">Lente</label>
-                  <select id="frmLens" class="form-select" aria-label="Lente" required>
+                  <select id="frmLens" name="frmLens" class="form-select" aria-label="Lente" required>
                     <option value="" selected>Elija un lente</option>
                     <option value="Canon 50mm 1.8">Canon 50mm 1.8</option>
                     <option value="Canon EF 100mm F2/8">Canon EF 100mm F2/8</option>

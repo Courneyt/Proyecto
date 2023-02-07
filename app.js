@@ -3,6 +3,8 @@ const db = require("./db.js");
 const express = require("express");
 const app = express();
 const multer = require("multer");
+const path = require("path");
+const bodyParser = require("body-parser");
 
 const MIMETYPES = ['image/jpeg', 'image/png'];
 const PORT = process.env.PORT || process.env.PUERTO || 80;
@@ -11,15 +13,14 @@ app.use(express.json());
 app.use(express.static("public"));
 
 //Configurar multer
-
  const upload = multer({
   storage: multer.diskStorage({
     destination:(req, file, cb) => 
     {
-      cb(null, 'upload')
+      cb(null, 'public/'+process.env.RUTA_STORAGE)
     },
     filename: (req, file, cb) => {
-      const fileExtension = extname(file.originalname);
+      const fileExtension = path.extname(file.originalname);
       const fileName = file.originalname.split(fileExtension)[0];
 
       cb(null, `${fileName}-${Date.now()}${fileExtension}`);
@@ -28,11 +29,11 @@ app.use(express.static("public"));
 
   fileFilter: (req,file,cb) => {
     if(MIMETYPES.includes(file.mimetype)) cb(null, true)
-    else cb(new Error(`Tipo de Imagen no permitido`))
+    else cb(new Error(`Solo se permiten los archivos: ${MIMETYPES}`))
   },
 
   limits: {
-    fieldSize:10000000,
+    fieldSize:process.env.SIZE_UPLOAD, 
   }
 
  });
@@ -56,11 +57,20 @@ app.get("/fotos/:id", async (req, res) => {
 });
 
 app.post("/upload", upload.single('photo'), async (req, res) => {
-  console.log(req.file);
-  res.sendStatus(200);
-  // const foto = await db.savePhoto(req.body);
-  // if (foto) res.location(`/fotos/${foto._id}`).status(201).send("Foto subida");
-  // else res.status(400).send("Error al subir una foto.");
+
+  const photoData = {
+      title: req.body.frmTitle,
+      photographer: req.body.frmPhotographer,
+      location: req.body.frmLocation,
+      description: req.body.frmDescription,
+      camera: req.body.frmCamera,
+      lens: req.body.frmLens,
+      photographer: req.body.frmPhotographer,
+  }
+  console.log(photoData);
+  const foto = await db.savePhoto(photoData);
+  if (foto) res.location(`/fotos/${foto._id}`).status(201).send("Foto subida");
+  else res.status(400).send("Error al subir una foto.");
 });
 
 app.patch("/fotos/:id", async (req, res) => {
