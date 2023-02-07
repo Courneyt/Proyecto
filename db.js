@@ -16,7 +16,7 @@ const PhotoSchema = new mongoose.Schema(
 
 					const typeValid = value.map((t) => validTypes.includes(t))
 
-					return typeValid.includes(true)
+					return !typeValid.includes(false)
 				},
 				message: 'Se ha introducido una categoría inválida.'
 			}
@@ -97,15 +97,15 @@ const PhotographerSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 			trim: true,
-			minLenght: 4
+			minLength: 4
 		},
 		email: {
 			type: String,
 			required: true,
 			trim: true,
 			lowercase: true,
-			minLenght: 1,
-			maxLenght: 35
+			minLength: 1,
+			maxLength: 35
 		},
 		level: {
 			type: String,

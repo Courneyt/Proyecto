@@ -29,6 +29,22 @@ const frmCamera = document.getElementById("frmCamera");
 const frmLens = document.getElementById("frmLens");
 const frmCat = document.getElementsByClassName("frmCkCat");
 
+// --------------Obtener foto subida------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // [frmNombre, frmTipo, frmAnyo].forEach((i) => {
 //   i.addEventListener("blur", () => {
@@ -81,25 +97,25 @@ const frmCat = document.getElementsByClassName("frmCkCat");
 // }
 
 // ---- Botón de guardar del modal -----
-btnGuardar.addEventListener("click", async () => {
-  const id = btnGuardar.dataset.id;
-  const categorias = [];
-  for (let casilla of frmCat) {
-    if (casilla.checked) categorias.push(casilla.name);
-  }
-    const photoData = {
-      title: frmTitulo.value,
-      photographer: frmFtGrafo.value,
-      location:frmUbicacion.value,
-      description:frmDesc.value,
-      camera:frmCamera.value,
-      lens:frmLens.value,
-      category:categorias,
-    };
-    await savePhoto(photoData);
+// btnGuardar.addEventListener("click", async () => {
+//   const id = btnGuardar.dataset.id;
+//   const categorias = [];
+//   for (let casilla of frmCat) {
+//     if (casilla.checked) categorias.push(casilla.name);
+//   }
+//     const photoData = {
+//       title: frmTitulo.value,
+//       photographer: frmFtGrafo.value,
+//       location:frmUbicacion.value,
+//       description:frmDesc.value,
+//       camera:frmCamera.value,
+//       lens:frmLens.value,
+//       category:categorias,
+//     };
+//     await savePhoto(photoData);
   
-  // await cargarGaleria();
-});
+//   // await cargarGaleria();
+// });
 
 // // ---- Filtro por categoria de fotos -----
 // casillaTodas.addEventListener("click", clicEnTodas);
@@ -167,7 +183,7 @@ async function enviarFetch(url, metodo = "GET", body) {
 }
 
 // ---- Funciones CRUD -----
-async function findWines(categorias) {
+async function findPhotos(categorias) {
   return await enviarFetch(
     `/fotos?categorias=${categorias.join(
       ","
@@ -177,9 +193,9 @@ async function findWines(categorias) {
 async function findPhoto(id) {
   return await enviarFetch(`/fotos/${id}`);
 }
-async function savePhoto(photoData) {
-  return await enviarFetch("/fotos", "POST", photoData);
-}
+// async function savePhoto(photoData) {
+//   return await enviarFetch("/fotos", "POST", photoData);
+// }
 async function updatePhoto(id, score) {
   return await enviarFetch(`/fotos/${id}`, "PATCH", { score: score });
 }
