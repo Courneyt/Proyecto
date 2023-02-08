@@ -1,6 +1,5 @@
 const casillaTodas = document.getElementById("todas");
-const otrasCasillas = document.getElementsByClassName("otrasCategorias");
-
+const otrasCasillas = document.getElementsByClassName("otrasCategorias")
 // ---- Campo de búsqueda -----
 // let timeout;
 // buscador.addEventListener("input", () => {
@@ -29,7 +28,9 @@ const frmCamera = document.getElementById("frmCamera");
 const frmLens = document.getElementById("frmLens");
 const frmCat = document.getElementsByClassName("frmCkCat");
 
-// --------------Obtener foto subida------------------------
+//----------------Error en la subida---------------------
+
+
 
 
 

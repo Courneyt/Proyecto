@@ -4,7 +4,7 @@ const express = require("express");
 const app = express();
 const multer = require("multer");
 const path = require("path");
-const bodyParser = require("body-parser");
+const body = require("body-parser");
 
 const MIMETYPES = ['image/jpeg', 'image/png'];
 const PORT = process.env.PORT || process.env.PUERTO || 80;
@@ -13,30 +13,30 @@ app.use(express.json());
 app.use(express.static("public"));
 
 //Configurar multer
- const upload = multer({
+const upload = multer({
   storage: multer.diskStorage({
-    destination:(req, file, cb) => 
-    {
-      cb(null, 'public/'+process.env.RUTA_STORAGE)
+    destination: (req, file, cb) => {
+      cb(null, 'public/' + process.env.RUTA_STORAGE)
     },
     filename: (req, file, cb) => {
       const fileExtension = path.extname(file.originalname);
       const fileName = file.originalname.split(fileExtension)[0];
-
-      cb(null, `${fileName}-${Date.now()}${fileExtension}`);
+      const fileFinalName = `${fileName}-${Date.now()}${fileExtension}`;
+      req.fileNombre = fileFinalName;
+      cb(null, fileFinalName);
     }
   }),
 
-  fileFilter: (req,file,cb) => {
-    if(MIMETYPES.includes(file.mimetype)) cb(null, true)
+  fileFilter: (req, file, cb) => {
+    if (MIMETYPES.includes(file.mimetype)) cb(null, true)
     else cb(new Error(`Solo se permiten los archivos: ${MIMETYPES}`))
   },
 
   limits: {
-    fieldSize:process.env.SIZE_UPLOAD, 
+    fieldSize: process.env.SIZE_UPLOAD,
   }
 
- });
+});
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
@@ -59,18 +59,19 @@ app.get("/fotos/:id", async (req, res) => {
 app.post("/upload", upload.single('photo'), async (req, res) => {
 
   const photoData = {
-      title: req.body.frmTitle,
-      photographer: req.body.frmPhotographer,
-      location: req.body.frmLocation,
-      description: req.body.frmDescription,
-      camera: req.body.frmCamera,
-      lens: req.body.frmLens,
-      photographer: req.body.frmPhotographer,
+    title: req.body.frmTitle,
+    photographer: req.body.frmPhotographer,
+    location: req.body.frmLocation,
+    description: req.body.frmDescription,
+    camera: req.body.frmCamera,
+    lens: req.body.frmLens,
+    category: req.body.frmCat,
+    img: '/' + process.env.RUTA_STORAGE + '/' + req.fileNombre
   }
   console.log(photoData);
   const foto = await db.savePhoto(photoData);
-  if (foto) res.location(`/fotos/${foto._id}`).status(201).send("Foto subida");
-  else res.status(400).send("Error al subir una foto.");
+  if (foto) res.location(`/fotos/${foto._id}`).status(201).redirect('/galeria.html');
+  else res.status(400).redirect('/galeria.html?errorfoto');
 });
 
 app.patch("/fotos/:id", async (req, res) => {

@@ -54,11 +54,16 @@ const PhotoSchema = new mongoose.Schema(
 			required: true,
 		},
 
-		photographer: {
-			type: mongoose.Schema.Types.ObjectId,
-			ref: 'Photographer',
-			autopopulate: true,
+		photographer:{
+			type:String,
+			required: true,
 		},
+
+		// photographer: {
+		// 	type: mongoose.Schema.Types.ObjectId,
+		// 	ref: 'Photographer',
+		// 	autopopulate: true,
+		// },
 
 	},
 	{
@@ -183,7 +188,7 @@ exports.savePhoto = async function (photoData) {
 		const photo = new Photo(photoData);
 		return await photo.save();
 	} catch (err) {
-		return undefined;
+		return console.error(err);;
 	}
 };
 
