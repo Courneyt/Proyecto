@@ -44,10 +44,14 @@ app.use((err, req, res, next) => {
 });
 
 app.get("/fotos", async (req, res) => {
-  let params = {
-    category: req.query.category.split(","),
-  };
-  res.json(await db.find(params));
+  let params;
+  if (req.query.category) {
+    params = {
+      category: req.query.category.split(","),
+    };
+  }
+
+  res.json(await db.findPhoto(params));
 });
 
 app.get("/fotos/:id", async (req, res) => {
@@ -57,7 +61,6 @@ app.get("/fotos/:id", async (req, res) => {
 });
 
 app.post("/upload", upload.single('photo'), async (req, res) => {
-
   const photoData = {
     title: req.body.frmTitle,
     photographer: req.body.frmPhotographer,

@@ -9,7 +9,9 @@
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="stylesheet" href="estilos.css">
+  <script src="plantillaGaleria.js"></script>
 </head>
+
 
 <body class="container-fluid p-0 min-vh-100 d-flex flex-column">
   <header>
@@ -56,20 +58,20 @@
               <div class="d-flex flex-column ms-5 me-5">
                 <div class="mb-3">
                   <label for="frmTitulo" class="form-label">Título</label>
-                  <input type="text" class="form-control" name="frmTitle" id="frmTitulo" placeholder="Introduzca un título." required
-                    minlength="1" />
+                  <input type="text" class="form-control" name="frmTitle" id="frmTitulo"
+                    placeholder="Introduzca un título." required minlength="1" />
                   <div class="invalid-feedback">Introduzca un titulo correcto</div>
                 </div>
                 <div class="mb-3">
                   <label for="frmFtGrafo" class="form-label">Fotógrafo</label>
-                  <input type="text" class="form-control" name="frmPhotographer" id="frmFtGrafo" placeholder="Autor de la foto." required
-                    minlength="1" />
+                  <input type="text" class="form-control" name="frmPhotographer" id="frmFtGrafo"
+                    placeholder="Autor de la foto." required minlength="1" />
                   <div class="invalid-feedback">Introduzca un titulo correcto</div>
                 </div>
                 <div class="mb-3">
                   <label for="frmUbicacion" class="form-label">Ubicación</label>
-                  <input type="text" class="form-control" name="frmLocation" id="frmUbicacion" placeholder="Ubicación de la foto." required
-                    minlength="1" />
+                  <input type="text" class="form-control" name="frmLocation" id="frmUbicacion"
+                    placeholder="Ubicación de la foto." required minlength="1" />
                   <div class="invalid-feedback">Introduzca un titulo correcto</div>
                 </div>
                 <div class="mb-3">
@@ -107,19 +109,22 @@
                   <div class="d-flex flex-row checkCat ms-3 me-3">
                     <div class="col me-2">
                       <div id="frmCat" class="form-check">
-                        <input class="form-check-input" type="checkbox" name="frmCat" value="Ninguna" id="ninguna" checked>
+                        <input class="form-check-input" type="checkbox" name="frmCat" value="Ninguna" id="ninguna"
+                          checked>
                         <label class="form-check-label" for="ninguna">
                           Ninguna
                         </label>
                       </div>
                       <div id="frmCat" class="form-check">
-                        <input class="form-check-input frmCkCat" type="checkbox" name="frmCat" value="Retrato" id="retrato">
+                        <input class="form-check-input frmCkCat" type="checkbox" name="frmCat" value="Retrato"
+                          id="retrato">
                         <label class="form-check-label" for="retrato">
                           Retrato
                         </label>
                       </div>
                       <div id="frmCat" class="form-check">
-                        <input class="form-check-input frmCkCat" name="frmCat" type="checkbox" value="Paisaje" id="paisaje">
+                        <input class="form-check-input frmCkCat" name="frmCat" type="checkbox" value="Paisaje"
+                          id="paisaje">
                         <label class="form-check-label" for="paisaje">
                           Paisaje
                         </label>
@@ -127,7 +132,8 @@
                     </div>
                     <di class="col">
                       <div id="frmCat" class="form-check">
-                        <input class="form-check-input frmCkCat" name="frmCat" type="checkbox" value="Abstracto" id="abstracto">
+                        <input class="form-check-input frmCkCat" name="frmCat" type="checkbox" value="Abstracto"
+                          id="abstracto">
                         <label class="form-check-label" for="abstracto">
                           Abstracto
                         </label>
@@ -139,7 +145,8 @@
                         </label>
                       </div>
                       <div id="frmCat" class="form-check">
-                        <input class="form-check-input frmCkCat" name="frmCat" type="checkbox" value="Urbano" id="urbano">
+                        <input class="form-check-input frmCkCat" name="frmCat" type="checkbox" value="Urbano"
+                          id="urbano">
                         <label class="form-check-label" for="urbano">
                           Urbano
                         </label>
@@ -226,52 +233,12 @@
         </ul>
       </div>
     </section>
-    <div class="row m-1 contenedorFotos">
-      <div class="col-lg-4 mb-1">
+    <div class="row m-1 contenedorFotos" id="contFotos">
+      <!-- <div class="col-lg-4 mb-1">
         <img id="dibujosLandscape" src="img/Naruto Shippuden hd wallpapers 2013 HD Wallpaper.jpg"
           class="w-100 mb-4 rounded" data-bs-toggle="modal" data-bs-target="#modalDesc" alt="...">
         <img id="dibujosPortrait" src="img/cara.jpg" class="w-100 mb-4 rounded" alt="...">
-      </div>
-      <div class="col-lg-4 mb-1">
-        <img id="dibujosPortrait" src="img/cara.jpg" class="w-100 mb-4 rounded" alt="...">
-        <img id="dibujosLandscape" src="img/Naruto Shippuden hd wallpapers 2013 HD Wallpaper.jpg"
-          class="w-100 mb-4 rounded" alt="...">
-      </div>
-      <div class="col-lg-4 mb-1">
-        <img id="dibujosLandscape" src="img/Naruto Shippuden hd wallpapers 2013 HD Wallpaper.jpg"
-          class="w-100 mb-4 rounded" alt="...">
-        <img id="dibujosPortrait" src="img/paracaidas.JPG" class="w-100 mb-4 rounded" alt="...">
-      </div>
-      <div class="col-lg-4 mb-1">
-        <img id="dibujosPortrait" src="img/cara.jpg" class="w-100 mb-4 rounded" alt="...">
-        <img id="dibujosLandscape" src="img/Ciclista.jpg" class="w-100 mb-4 rounded" alt="...">
-      </div>
-      <div class="col-lg-4 mb-1">
-        <img id="dibujosLandscape" src="img/Campo.jpg" class="w-100 mb-4 rounded" alt="...">
-        <img id="dibujosPortrait" src="img/cara.jpg" class="w-100 mb-4 rounded" alt="...">
-      </div>
-      <div class="col-lg-4 mb-1">
-        <img id="dibujosPortrait" src="img/cara.jpg" class="w-100 mb-4 rounded" alt="...">
-        <img id="dibujosLandscape" src="img/6pm.jpg" class="w-100 mb-4 rounded" alt="...">
-      </div>
-      <div class="col-lg-4 mb-1">
-        <img id="dibujosLandscape" src="img/LaOrilla.jpg" class="w-100 mb-4 rounded" alt="...">
-        <img id="dibujosPortrait" src="img/cara.jpg" class="w-100 mb-4 rounded" alt="...">
-      </div>
-      <div class="col-lg-4 mb-1">
-        <img id="dibujosPortrait" src="img/cara.jpg" class="w-100 mb-4 rounded" alt="...">
-        <img id="dibujosLandscape" src="img/Naruto Shippuden hd wallpapers 2013 HD Wallpaper.jpg"
-          class="w-100 mb-4 rounded" alt="...">
-      </div>
-      <div class="col-lg-4 mb-1">
-        <img id="dibujosLandscape" src="img/Naruto Shippuden hd wallpapers 2013 HD Wallpaper.jpg"
-          class="w-100 mb-4 rounded" alt="...">
-        <img id="dibujosPortrait" src="img/cara.jpg" class="w-100 mb-4 rounded" alt="...">
-      </div>
-      <div class="col-lg-4 mb-1">
-        <img id="dibujosLandscape" src="img/Naruto Shippuden hd wallpapers 2013 HD Wallpaper.jpg"
-          class="w-100 mb-4 rounded" alt="...">
-      </div>
+      </div> -->
     </div>
   </main>
   <div id=modalDesc class="modal" tabindex="-1">

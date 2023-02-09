@@ -25,7 +25,8 @@
     "mongoose": "^6.9.0",
     "mongoose-autopopulate": "^0.17.1",
     "multer": "^1.4.5-lts.1",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "pug": "^3.0.2"
   },
   "devDependencies": {
     "@types/multer": "^1.4.7"

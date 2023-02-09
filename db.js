@@ -12,7 +12,7 @@ const PhotoSchema = new mongoose.Schema(
 			type: [String],
 			validate: {
 				validator: function (value) {
-					const validTypes = ["Abstracto", "Retrato", "Paisaje", "Macro", "Urbano"]
+					const validTypes = ["Ninguna","Abstracto", "Retrato", "Paisaje", "Macro", "Urbano"]
 
 					const typeValid = value.map((t) => validTypes.includes(t))
 

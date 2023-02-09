@@ -1,11 +1,5 @@
 const casillaTodas = document.getElementById("todas");
 const otrasCasillas = document.getElementsByClassName("otrasCategorias")
-// ---- Campo de búsqueda -----
-// let timeout;
-// buscador.addEventListener("input", () => {
-//   clearTimeout(timeout);
-//   timeout = setTimeout(cargarGaleria, 500);
-// });
 
 // ---- Alerta ----
 const alerta = document.getElementById("alerta");
@@ -14,6 +8,11 @@ const mostrarAlerta = (msg) => {
   alerta.classList.add("abierta");
   setTimeout(() => alerta.classList.remove("abierta"), 3000);
 };
+
+//----------------Error en la subida---------------------
+if (document.location.search) {
+  mostrarAlerta("Error. Valores incorrectos al subir la foto.");
+}
 
 // ---- Modal -----
 const modal = new bootstrap.Modal(document.getElementById("modalAltaFt"));
@@ -28,7 +27,7 @@ const frmCamera = document.getElementById("frmCamera");
 const frmLens = document.getElementById("frmLens");
 const frmCat = document.getElementsByClassName("frmCkCat");
 
-//----------------Error en la subida---------------------
+
 
 
 
@@ -104,18 +103,9 @@ const frmCat = document.getElementsByClassName("frmCkCat");
 //   for (let casilla of frmCat) {
 //     if (casilla.checked) categorias.push(casilla.name);
 //   }
-//     const photoData = {
-//       title: frmTitulo.value,
-//       photographer: frmFtGrafo.value,
-//       location:frmUbicacion.value,
-//       description:frmDesc.value,
-//       camera:frmCamera.value,
-//       lens:frmLens.value,
-//       category:categorias,
-//     };
-//     await savePhoto(photoData);
-  
-//   // await cargarGaleria();
+
+
+//   await cargarGaleria();
 // });
 
 // // ---- Filtro por categoria de fotos -----
@@ -148,17 +138,17 @@ const frmCat = document.getElementsByClassName("frmCkCat");
 // }
 
 // // ---- Recarga la galeria, aplicando filtro -----
-// async function cargarGaleria() {
-//   const categorias = [];
-//   for (let casilla of otrasCasillas) {
-//     if (casilla.checked) categorias.push(casilla.name);
-//   }
-//   cuerpoTabla.innerHTML = plantillaGaleria({
-//     fotos: await findPhotos(categorias),
-//   });
-// }
+async function cargarGaleria() {
+  const categorias = [];
+  for (let casilla of otrasCasillas) {
+    if (casilla.checked) categorias.push(casilla.name);
+  }
+  contFotos.innerHTML = plantillaGaleria({
+    fotos: await findPhotos(categorias),
+  });
+}
 
-// cargarGaleria();
+cargarGaleria();
 
 // ---- Fetch ------
 async function enviarFetch(url, metodo = "GET", body) {
