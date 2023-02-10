@@ -170,9 +170,12 @@ exports.close = async function () {
 //***********************Encontrar Fotos***************************/
 
 exports.findPhoto = async function (params) {
-	const query = Photo.find()
-		.where("category")
+
+	const query = Photo.find();
+	if (params) {
+		query.where("category")
 		.in(params.category);
+	}
 	return await query.exec();
 };
 

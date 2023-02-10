@@ -60,19 +60,16 @@
                   <label for="frmTitulo" class="form-label">Título</label>
                   <input type="text" class="form-control" name="frmTitle" id="frmTitulo"
                     placeholder="Introduzca un título." required minlength="1" />
-                  <div class="invalid-feedback">Introduzca un titulo correcto</div>
                 </div>
                 <div class="mb-3">
                   <label for="frmFtGrafo" class="form-label">Fotógrafo</label>
                   <input type="text" class="form-control" name="frmPhotographer" id="frmFtGrafo"
                     placeholder="Autor de la foto." required minlength="1" />
-                  <div class="invalid-feedback">Introduzca un titulo correcto</div>
                 </div>
                 <div class="mb-3">
                   <label for="frmUbicacion" class="form-label">Ubicación</label>
                   <input type="text" class="form-control" name="frmLocation" id="frmUbicacion"
                     placeholder="Ubicación de la foto." required minlength="1" />
-                  <div class="invalid-feedback">Introduzca un titulo correcto</div>
                 </div>
                 <div class="mb-3">
                   <label for="frmDesc" class="form-label">Descripción</label>
@@ -91,7 +88,6 @@
                     <option value="Sony Alpha A3000">Sony Alpha A3000</option>
                     <option value="Sony Evil Alpha 7 M3">Sony Evil Alpha 7 M3</option>
                   </select>
-                  <div class="invalid-feedback">Elija una cámara</div>
                 </div>
                 <div class="mb-3">
                   <label for="frmLens" class="form-label">Lente</label>
@@ -102,7 +98,6 @@
                     <option value="Canon EF135mm F/2">Canon EF135mm F/2</option>
                     <option value="Sony DT 18-55mm f/3.5">Sony DT 18-55mm f/3.5</option>
                   </select>
-                  <div class="invalid-feedback">Elija una cámara</div>
                 </div>
                 <div class="mb-3">
                   <label for="frmCat" class="form-label">Categorías</label>
@@ -156,7 +151,7 @@
                 </div>
                 <div class="mb-3">
                   <label for="frmFile" class="form-label">Imagen</label>
-                  <input class="form-control" type="file" id="frmFile" name="photo">
+                  <input class="form-control" type="file" id="frmFile" name="photo" required>
                 </div>
           </form>
           <div class="modal-footer">

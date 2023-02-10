@@ -60,21 +60,38 @@ app.get("/fotos/:id", async (req, res) => {
   else res.status(404).send(`No existe una foto con ID=${req.params.id}.`);
 });
 
-app.post("/upload", upload.single('photo'), async (req, res) => {
-  const photoData = {
-    title: req.body.frmTitle,
-    photographer: req.body.frmPhotographer,
-    location: req.body.frmLocation,
-    description: req.body.frmDescription,
-    camera: req.body.frmCamera,
-    lens: req.body.frmLens,
-    category: req.body.frmCat,
-    img: '/' + process.env.RUTA_STORAGE + '/' + req.fileNombre
-  }
-  console.log(photoData);
-  const foto = await db.savePhoto(photoData);
-  if (foto) res.location(`/fotos/${foto._id}`).status(201).redirect('/galeria.html');
-  else res.status(400).redirect('/galeria.html?errorfoto');
+const up = upload.single('photo');
+app.post("/upload", async (req, res) => {
+
+  up(req, res, async function (err) {
+    if (err instanceof multer.MulterError) {
+      // A Multer error occurred when uploading.
+      res.status(400).redirect('/galeria.html?errorfoto');
+    } else if (err) {
+      // An unknown error occurred when uploading.
+      res.status(400).redirect('/galeria.html?errorfoto');
+    } else {
+      // Everything went fine.
+      const photoData = {
+        title: req.body.frmTitle,
+        photographer: req.body.frmPhotographer,
+        location: req.body.frmLocation,
+        description: req.body.frmDescription,
+        camera: req.body.frmCamera,
+        lens: req.body.frmLens,
+        category: req.body.frmCat,
+        img: '/' + process.env.RUTA_STORAGE + '/' + req.fileNombre
+      }
+      console.log(photoData);
+      const foto = await db.savePhoto(photoData);
+      if (foto) res.location(`/fotos/${foto._id}`).status(201).redirect('/galeria.html');
+      else res.status(400).redirect('/galeria.html?errorfoto');
+    }
+
+
+  })
+
+
 });
 
 app.patch("/fotos/:id", async (req, res) => {
