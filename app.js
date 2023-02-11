@@ -4,7 +4,6 @@ const express = require("express");
 const app = express();
 const multer = require("multer");
 const path = require("path");
-const body = require("body-parser");
 
 const MIMETYPES = ['image/jpeg', 'image/png'];
 const PORT = process.env.PORT || process.env.PUERTO || 80;
@@ -83,7 +82,7 @@ app.post("/upload", async (req, res) => {
         img: '/' + process.env.RUTA_STORAGE + '/' + req.fileNombre
       }
       console.log(photoData);
-      console.log()
+
       const foto = await db.savePhoto(photoData);
       if (foto) res.location(`/fotos/${foto._id}`).status(201).redirect('/galeria.html');
       else res.status(400).redirect('/galeria.html?errorfoto');

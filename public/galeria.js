@@ -54,7 +54,8 @@ function validar() {
       // }
       const ancho =this.width.toFixed(0);
       alert(ancho);
-
+      
+      
     };
 
     img.src = URL.createObjectURL(foto);
