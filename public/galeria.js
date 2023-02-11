@@ -43,22 +43,22 @@ function validar() {
   //   c = 1;
   //   alert('Ingrese una imagen con alguno de los siguientes formatos: .jpeg/.jpg/.png.');
   // } else {
-    var img = new Image();
-    img.onload = function () {
-      // if (this.width.toFixed(0) != 900 && this.height.toFixed(0) != 400) {
-      //   c = 1;
-      //   alert('Las medidas deben ser: 900 x 400');
-      //   alert(c);
-      // } else {
-      //   alert('Imagen correcta :)');
-      // }
-      const ancho =this.width.toFixed(0);
-      alert(ancho);
-      
-      
-    };
+  var img = new Image();
+  img.onload = function () {
+    // if (this.width.toFixed(0) != 900 && this.height.toFixed(0) != 400) {
+    //   c = 1;
+    //   alert('Las medidas deben ser: 900 x 400');
+    //   alert(c);
+    // } else {
+    //   alert('Imagen correcta :)');
+    // }
+    const ancho = this.width.toFixed(0);
+    // alert(ancho);
 
-    img.src = URL.createObjectURL(foto);
+
+  };
+
+  img.src = URL.createObjectURL(foto);
   // }
   // if (c == 1)
   //   event.preventDefault();
@@ -142,42 +142,51 @@ function validar() {
 // });
 
 // // ---- Filtro por categoria de fotos -----
-// casillaTodas.addEventListener("click", clicEnTodas);
-// for (let casilla of otrasCasillas) {
-//   casilla.addEventListener("click", clicOtraCategoria);
-// }
-// function clicEnTodas(evt) {
-//   let estado = casillaTodas.checked;
-//   for (let casilla of otrasCasillas) {
-//     casilla.checked = estado;
-//   }
-//   cargarGaleria();
-// }
-// function clicOtraCategoria(evt) {
-//   let estado = evt.target.checked;
-//   if (estado == false) {
-//     casillaTodas.checked = false;
-//   } else {
-//     for (let casilla of otrasCasillas) {
-//       if (casilla.checked == false) {
-//         casillaTodas.checked = false;
-//         cargarGaleria();
-//         return;
-//       }
-//     }
-//     casillaTodas.checked = true;
-//   }
-//   cargarGaleria();
-// }
+casillaTodas.addEventListener("click", clicEnTodas);
+for (let casilla of otrasCasillas) {
+  casilla.addEventListener("click", clicOtraCategoria);
+}
+function clicEnTodas(evt) {
+  let estado = casillaTodas.checked;
+  for (let casilla of otrasCasillas) {
+    casilla.checked = estado;
+  }
+  cargarGaleria();
+}
+function clicOtraCategoria(evt) {
+  let estado = evt.target.checked;
+  if (estado == false) {
+    casillaTodas.checked = false;
+  } else {
+    for (let casilla of otrasCasillas) {
+      if (casilla.checked == false) {
+        casillaTodas.checked = false;
+        cargarGaleria();
+        return;
+      }
+    }
+    casillaTodas.checked = true;
+  }
+  cargarGaleria();
+}
 
 // // ---- Recarga la galeria, aplicando filtro -----
 async function cargarGaleria() {
-  const categorias = [];
+  const categorias = [casillaTodas.name];
   for (let casilla of otrasCasillas) {
-    if (casilla.checked) categorias.push(casilla.name);
+    if (casilla.checked) {
+      categorias.push(casilla.name);
+    }
   }
+  //Obtenemos el valor del array completo.
+  const tamañoTodas = otrasCasillas.length + 1;
+
+  if (categorias.length < tamañoTodas && categorias.length > 1) {
+    categorias.shift();
+  }
+
   contFotos.innerHTML = plantillaGaleria({
-    fotos: await findPhotos(categorias),
+    fotos: await findPhoto(categorias),
   });
 }
 
@@ -207,14 +216,14 @@ async function enviarFetch(url, metodo = "GET", body) {
 }
 
 // ---- Funciones CRUD -----
-async function findPhotos(categorias) {
+async function findPhoto(categorias) {
   return await enviarFetch(
     `/fotos?categorias=${categorias.join(
       ","
     )}`
   );
 }
-async function findPhoto(id) {
+async function findPhotoById(id) {
   return await enviarFetch(`/fotos/${id}`);
 }
 // async function savePhoto(photoData) {

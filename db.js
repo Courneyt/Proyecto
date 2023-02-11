@@ -54,8 +54,8 @@ const PhotoSchema = new mongoose.Schema(
 			required: true,
 		},
 
-		photographer:{
-			type:String,
+		photographer: {
+			type: String,
 			required: true,
 		},
 
@@ -171,11 +171,8 @@ exports.close = async function () {
 
 exports.findPhoto = async function (params) {
 
-	const query = Photo.find();
-	if (params) {
-		query.where("category")
-		.in(params.category);
-	}
+	const query = Photo.find().where("category").in(params.categorias);
+
 	return await query.exec();
 };
 

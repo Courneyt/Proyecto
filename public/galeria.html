@@ -15,6 +15,7 @@
 
 
 <body class="container-fluid p-0 min-vh-100 d-flex flex-column">
+  <div id="alerta" class="alert alert-danger" role="alert"></div>
   <header>
     <nav class="navbar navbar-dark navbar-expand-lg bg-dark navbar-static fixed-top">
       <div class="container-fluid">
@@ -170,7 +171,6 @@
   </div>
   </div>
   <main class="flex-grow-1 row m-0 align-items-start">
-    <div id="alerta" class="alert alert-danger" role="alert"></div>
     <section class="row mt-1 mb-2 filtro">
       <div class="dropdown p-1">
         <button class="btn btn-secondary dropdown-toggle bg-dark float-end" type="button" data-bs-toggle="dropdown"
@@ -180,7 +180,7 @@
         <ul class="dropdown-menu">
           <li>
             <a class="dropdown-item" href="#">
-              <input class="form-check-input" type="checkbox" value="" id="todas" checked>
+              <input class="form-check-input" type="checkbox" name="Ninguna" id="todas" checked>
               <label class="form-check-label" for="todas">
                 Todas
               </label>
@@ -188,7 +188,7 @@
           </li>
           <li>
             <a class="dropdown-item" href="#">
-              <input class="otrasCategorias form-check-input" type="checkbox" value="" id="retrato">
+              <input class="otrasCategorias form-check-input" type="checkbox" name="Retrato" id="retrato" checked>
               <label class="form-check-label" for="retrato">
                 Retrato
               </label>
@@ -196,7 +196,7 @@
           </li>
           <li>
             <a class="dropdown-item" href="#">
-              <input class="otrasCategorias form-check-input" type="checkbox" value="" id="paisaje">
+              <input class="otrasCategorias form-check-input" type="checkbox" name="Paisaje" id="paisaje" checked>
               <label class="form-check-label" for="paisaje">
                 Paisaje
               </label>
@@ -204,7 +204,7 @@
           </li>
           <li>
             <a class="dropdown-item" href="#">
-              <input class="otrasCategorias form-check-input" type="checkbox" value="" id="abstracto">
+              <input class="otrasCategorias form-check-input" type="checkbox" name="Abstracto" id="abstracto" checked>
               <label class="form-check-label" for="abstracto">
                 Abstracto
               </label>
@@ -212,7 +212,7 @@
           </li>
           <li>
             <a class="dropdown-item" href="#">
-              <input class="otrasCategorias form-check-input" type="checkbox" value="" id="macro">
+              <input class="otrasCategorias form-check-input" type="checkbox" name="Macro" id="macro" checked>
               <label class="form-check-label" for="macro">
                 Macro
               </label>
@@ -220,7 +220,7 @@
           </li>
           <li>
             <a class="dropdown-item" href="#">
-              <input class="otrasCategorias form-check-input" type="checkbox" value="" id="urbano">
+              <input class="otrasCategorias form-check-input" type="checkbox" name="Urbano" id="urbano" checked>
               <label class="form-check-label" for="urbano">
                 Urbano
               </label>

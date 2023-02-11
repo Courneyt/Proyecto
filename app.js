@@ -44,12 +44,12 @@ app.use((err, req, res, next) => {
 
 app.get("/fotos", async (req, res) => {
   let params;
-  if (req.query.category) {
-    params = {
-      category: req.query.category.split(","),
-    };
-  }
 
+  params = {
+    categorias: req.query.categorias.split(","),
+  };
+
+  console.log(params)
   res.json(await db.findPhoto(params));
 });
 
