@@ -27,9 +27,41 @@ const frmCamera = document.getElementById("frmCamera");
 const frmLens = document.getElementById("frmLens");
 const frmCat = document.getElementsByClassName("frmCkCat");
 
+//Validar foto
 
+const form = document.getElementById('formulario');
 
+form.onsubmit = function () { validar() };
 
+function validar() {
+
+  var o = document.getElementById('frmFile');
+  var foto = o.files[0];
+  var c = 0;
+
+  // if (o.files.length == 0 || !(/\.(jpg|png)$/i).test(foto.name)) {
+  //   c = 1;
+  //   alert('Ingrese una imagen con alguno de los siguientes formatos: .jpeg/.jpg/.png.');
+  // } else {
+    var img = new Image();
+    img.onload = function () {
+      // if (this.width.toFixed(0) != 900 && this.height.toFixed(0) != 400) {
+      //   c = 1;
+      //   alert('Las medidas deben ser: 900 x 400');
+      //   alert(c);
+      // } else {
+      //   alert('Imagen correcta :)');
+      // }
+      const ancho =this.width.toFixed(0);
+      alert(ancho);
+
+    };
+
+    img.src = URL.createObjectURL(foto);
+  // }
+  // if (c == 1)
+  //   event.preventDefault();
+}
 
 
 
