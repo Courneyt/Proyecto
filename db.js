@@ -59,12 +59,6 @@ const PhotoSchema = new mongoose.Schema(
 			required: true,
 		},
 
-		// photographer: {
-		// 	type: mongoose.Schema.Types.ObjectId,
-		// 	ref: 'Photographer',
-		// 	autopopulate: true,
-		// },
-
 	},
 	{
 		methods: {
