@@ -10,3 +10,5 @@ LA PRIMERA FOTO DEL CONTENEDOR NO DEBE TENER PADDING
  Quitar la barra a las iamgenes
 
  DImensiones de las Fotós
+
+ Problema al cargar el modal de Ninguna a cualquier otra categoria

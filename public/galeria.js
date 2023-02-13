@@ -17,14 +17,7 @@ if (document.location.search) {
 // ---- Modal -----
 const btnGuardar = document.getElementById("btnGuardar");
 
-//Datos Modal
-const frmTitulo = document.getElementById("frmTitulo");
-const frmFtGrafo = document.getElementById("frmFtGrafo");
-const frmUbicacion = document.getElementById("frmUbicacion");
-const frmDesc = document.getElementById("frmDesc");
-const frmCamera = document.getElementById("frmCamera");
-const frmLens = document.getElementById("frmLens");
-const frmCat = document.getElementsByClassName("frmCkCat");
+
 
 //Validar foto
 
@@ -100,14 +93,33 @@ function validar() {
 //     }
 //   });
 
+
+//Datos Modal
+const modalTitulo = document.getElementById("titlePhoto");
+const modalFoto = document.getElementById("photo");
+const modalDate = document.getElementById("date-location");
+const modalCamera = document.getElementById("camera");
+const modalLens = document.getElementById("lente");
+const modalDesc = document.getElementById("descripcion");
+const modalAutor = document.getElementById("autor");
+
 //------------------Mostrar datos fotos---------------------------------------
 const modal = new bootstrap.Modal(document.getElementById("modalDesc"));
 
 async function rellenarModal(evt) {
-  ruta = evt.target.getAttribute("src");
-  foto = await findPhotoByImg(ruta);
-  
 
+  let ruta = evt.target.getAttribute("src");
+  let rutaCorrecta = encodeURIComponent(ruta);
+  const foto = await findPhotoByImg(rutaCorrecta);
+  modalTitulo.value = foto[0].title; 
+  modalFoto.setAttribute("src",foto[0].img);
+  const dateTime = foto[0].displayDate;
+  const ubicacion = foto[0].location;
+  modalDate.value = ubicacion + " - " + dateTime;
+  modalCamera.value = foto[0].camera;
+  modalLens.value = foto[0].lens;
+  modalDesc.value = foto[0].description;
+  modalAutor.value = foto[0].photographer;
 }
 
 
@@ -193,13 +205,10 @@ async function cargarGaleria() {
   const fotos = document.getElementsByClassName("fotos");
 
   if (fotos.length > 1) {
-    let ruta;
     for (let foto of fotos) {
-      console.log("Estoy dentro")
       foto.addEventListener('click', rellenarModal);
     }
   }
-
 }
 
 cargarGaleria();

@@ -86,7 +86,11 @@ const PhotoSchema = new mongoose.Schema(
 			},
 			displayDate: {
 				get() {
-					return this.dateAndTime.toLocaleString();
+					return this.dateAndTime.toLocaleString("es-ES", {
+						day: "2-digit",
+						month: "2-digit",
+						year: "numeric",
+					  });
 				},
 			},
 		},
