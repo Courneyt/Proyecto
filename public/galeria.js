@@ -111,8 +111,8 @@ async function rellenarModal(evt) {
   let ruta = evt.target.getAttribute("src");
   let rutaCorrecta = encodeURIComponent(ruta);
   const foto = await findPhotoByImg(rutaCorrecta);
-  modalTitulo.value = foto[0].title; 
-  modalFoto.setAttribute("src",foto[0].img);
+  modalTitulo.value = foto[0].title;
+  modalFoto.setAttribute("src", foto[0].img);
   const dateTime = foto[0].displayDate;
   const ubicacion = foto[0].location;
   modalDate.value = ubicacion + " - " + dateTime;
@@ -121,6 +121,50 @@ async function rellenarModal(evt) {
   modalDesc.value = foto[0].description;
   modalAutor.value = foto[0].photographer;
 }
+
+// Puntuar Fotos
+
+// const stars = document.getElementsByClassName("estrella");
+// for (let i = 0; i < stars.length; i++) {
+//   stars[i].addEventListener("click", () => {
+//     for (let j = 0; j <= i; j++) {
+//       stars[j].classList.add("selected");
+//     }
+//     for (let j = i ; j < stars.length; j++) {
+//       stars[j].classList.remove("selected");
+//     }
+//   });
+// }
+// const stars = document.getElementsByClassName("estrella");
+// for (let i = 0; i < stars.length; i++) {
+//   stars[i].addEventListener("click", () => {
+//     for (let j = 0; j <= i; j++) {
+//       if (!stars[j].classList.contains("selected")) {
+//         stars[j].classList.add("selected");
+//       }
+//     }
+//     for (let j = i + 1; j < stars.length; j++) {
+//       if (stars[j].classList.contains("selected")) {
+//         stars[j].classList.remove("selected");
+//       }
+//     }
+//   });
+// }
+
+// for (star of stars) {
+//   star.addEventListener("click", () => {
+//     for (let j = 0; j < stars.length; j++) {
+//       stars[j].classList.remove("selected");
+//     }
+//     for (let j = 0; j <= i; j++) {
+//       stars[j].classList.add("selected");
+//     }
+//   });
+// }
+
+
+
+
 
 
 
