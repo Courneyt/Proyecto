@@ -12,7 +12,7 @@ const PhotoSchema = new mongoose.Schema(
 			type: [String],
 			validate: {
 				validator: function (value) {
-					const validTypes = ["Ninguna","Abstracto", "Retrato", "Paisaje", "Macro", "Urbano"]
+					const validTypes = ["Ninguna", "Abstracto", "Retrato", "Paisaje", "Macro", "Urbano"]
 
 					const typeValid = value.map((t) => validTypes.includes(t))
 
@@ -128,7 +128,6 @@ const PhotographerSchema = new mongoose.Schema(
 				message: props => `${props.value} número de teléfono no válido!`
 			},
 		},
-		gallery: [PhotoSchema]
 
 	},
 	{
@@ -172,10 +171,12 @@ exports.close = async function () {
 exports.findPhoto = async function (params) {
 
 	const query = Photo.find().where("category").in(params.categorias);
-
 	return await query.exec();
 };
 
+exports.findPhotoByImg = async function (ruta) {
+	return await Photo.find({ "img": ruta });
+}
 
 exports.findPhotoById = async function (photoId) {
 	return await Photo.findById(photoId);

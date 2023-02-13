@@ -1,6 +1,6 @@
 const casillaTodas = document.getElementById("todas");
-const otrasCasillas = document.getElementsByClassName("otrasCategorias")
-
+const otrasCasillas = document.getElementsByClassName("otrasCategorias");
+var cargada = false;
 // ---- Alerta ----
 const alerta = document.getElementById("alerta");
 const mostrarAlerta = (msg) => {
@@ -15,7 +15,6 @@ if (document.location.search) {
 }
 
 // ---- Modal -----
-const modal = new bootstrap.Modal(document.getElementById("modalAltaFt"));
 const btnGuardar = document.getElementById("btnGuardar");
 
 //Datos Modal
@@ -101,45 +100,45 @@ function validar() {
 //     }
 //   });
 
-// ---- Botón de crear -----
-// document.getElementById("btnSubir").addEventListener("click", abrirModal);
+//------------------Mostrar datos fotos---------------------------------------
+const modal = new bootstrap.Modal(document.getElementById("modalDesc"));
 
-// // ---- Función que edita o que crea -----
-// async function abrirModal(evt) {
-//   // if (evt.target.classList.contains("editar")) {
-//   //   // Edición
-//   //   [frmNombre, frmTipo, frmAnyo].forEach((i) => (i.disabled = true));
-//   //   panelPuntos.classList.remove("d-none");
-//   //   const id = (btnGuardar.dataset.id = evt.target.dataset.id);
-//   //   const wine = await findWine(id);
-//   //   frmNombre.value = wine.name;
-//   //   frmTipo.value = wine.type;
-//   //   frmAnyo.value = wine.year;
-//   //   btnGuardar.disabled = false;
-//   // } else {
-//     // Creación
-//     // [frmNombre, frmTipo, frmAnyo].forEach((i) => {
-//     //   i.disabled = false;
-//     //   i.value = "";
-//     // });
-//     // panelPuntos.classList.add("d-none");
-//     btnGuardar.disabled = true;
-//     btnGuardar.dataset.id = "";
-//   // }
-//   modal.show();
-// }
+async function rellenarModal(evt) {
+  ruta = evt.target.getAttribute("src");
+  foto = await findPhotoByImg(ruta);
+  
 
-// ---- Botón de guardar del modal -----
-// btnGuardar.addEventListener("click", async () => {
-//   const id = btnGuardar.dataset.id;
-//   const categorias = [];
-//   for (let casilla of frmCat) {
-//     if (casilla.checked) categorias.push(casilla.name);
-//   }
+}
 
 
-//   await cargarGaleria();
-// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // // ---- Filtro por categoria de fotos -----
 casillaTodas.addEventListener("click", clicEnTodas);
@@ -170,8 +169,9 @@ function clicOtraCategoria(evt) {
   cargarGaleria();
 }
 
-// // ---- Recarga la galeria, aplicando filtro -----
+// // ---- Recarga la galeria, aplicando filtro, escucha clicks en las fotos -----
 async function cargarGaleria() {
+
   const categorias = [casillaTodas.name];
   for (let casilla of otrasCasillas) {
     if (casilla.checked) {
@@ -188,6 +188,18 @@ async function cargarGaleria() {
   contFotos.innerHTML = plantillaGaleria({
     fotos: await findPhoto(categorias),
   });
+
+  //Escuchamos clicks
+  const fotos = document.getElementsByClassName("fotos");
+
+  if (fotos.length > 1) {
+    let ruta;
+    for (let foto of fotos) {
+      console.log("Estoy dentro")
+      foto.addEventListener('click', rellenarModal);
+    }
+  }
+
 }
 
 cargarGaleria();
@@ -223,6 +235,11 @@ async function findPhoto(categorias) {
     )}`
   );
 }
+
+async function findPhotoByImg(ruta) {
+  return await enviarFetch(`/fotos/img/${ruta}`);
+}
+
 async function findPhotoById(id) {
   return await enviarFetch(`/fotos/${id}`);
 }

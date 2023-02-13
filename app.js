@@ -49,8 +49,14 @@ app.get("/fotos", async (req, res) => {
     categorias: req.query.categorias.split(","),
   };
 
-  console.log(params)
   res.json(await db.findPhoto(params));
+});
+
+app.get("/fotos/img/:ruta", async (req, res) => {
+  const ruta = decodeURIComponent(req.params.ruta);
+  const foto = await db.findPhotoByImg(ruta);
+  if (foto) res.json(foto);
+  else res.status(404).send(`No existe una foto con Ruta=${req.params.ruta}.`);
 });
 
 app.get("/fotos/:id", async (req, res) => {
