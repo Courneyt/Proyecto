@@ -168,21 +168,18 @@ async function rellenarModal(evt) {
 
 }
 //---------------Click Votar--------------------
-// document.getElementsByClassName("clicks")[0]
-//   .addEventListener("click", async (evt) => {
-//     if (evt.target.classList.contains("votar")) {
-//       abrirPuntuar(evt);
-//     }
-//   });
+const modalVotar = new bootstrap.Modal(document.getElementById("modalVotar"));
 
-// async function abrirPuntuar(evt) {
-//   if (evt.target.classList.contains("votar")) {
-//     //Votar
-//     const id = evt.target.dataset.id;
-//     // const photo = await findPhotoById(id);
+async function abrirPuntuar(evt) {
+  if (evt.target.classList.contains("votar")) {
+    //Votar
+    const id = evt.target.dataset.id;
+    console.log(id)
+    // const photo = await findPhotoById(id);
 
-//   }
-// }
+  }
+  modalVotar.show();
+}
 
 
 
@@ -249,11 +246,21 @@ async function cargarGaleria() {
   //Escuchamos clicks
   const fotos = document.getElementsByClassName("fotos");
 
-  if (fotos.length > 1) {
+  if (fotos.length > 0) {
     for (let foto of fotos) {
       foto.addEventListener('click', rellenarModal);
     }
   }
+
+  const botoncillos = document.getElementsByClassName("edicion");
+  for (let boton of botoncillos) {
+    boton.addEventListener("click", async (evt) => {
+      if (evt.target.classList.contains("votar")) {
+        abrirPuntuar(evt);
+      }
+    });
+  }
+    
 }
 
 cargarGaleria();
