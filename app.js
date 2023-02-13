@@ -4,6 +4,17 @@ const express = require("express");
 const app = express();
 const multer = require("multer");
 const path = require("path");
+const fs = require('fs');
+
+
+
+fs.unlink(filePath, (err) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+  console.log(`${filePath} was deleted`);
+});
 
 const MIMETYPES = ['image/jpeg', 'image/png'];
 const PORT = process.env.PORT || process.env.PUERTO || 80;

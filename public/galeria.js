@@ -69,31 +69,6 @@ function validar() {
 
 
 
-
-
-// [frmNombre, frmTipo, frmAnyo].forEach((i) => {
-//   i.addEventListener("blur", () => {
-//     btnGuardar.disabled = false;
-//     [frmNombre, frmTipo, frmAnyo].forEach((j) => {
-//       if (!j.validity.valid) btnGuardar.disabled = true;
-//     });
-//   });
-// });
-
-// ---- Clics en la tabla: puntuar y borrar -----
-// document
-//   .getElementsByTagName("table")[0]
-//   .addEventListener("click", async (evt) => {
-//     if (evt.target.classList.contains("editar")) {
-//       abrirModal(evt);
-//     }
-//     if (evt.target.classList.contains("borrar")) {
-//       await deleteWine(evt.target.dataset.id);
-//       await cargarTablaVinos();
-//     }
-//   });
-
-
 //Datos Modal
 const modalTitulo = document.getElementById("titlePhoto");
 const modalFoto = document.getElementById("photo");
@@ -104,7 +79,13 @@ const modalDesc = document.getElementById("descripcion");
 const modalAutor = document.getElementById("autor");
 const stars = document.getElementsByClassName("estrella");
 
-
+// async function comprobarEstrellitas() {
+//   for (let j = 0; j < stars.length; j++) {
+//     if (stars[j].classList.contains("selected")) {
+//       stars[j].classList.remove("selected");
+//     }
+//   }
+// }
 
 //------------------Mostrar datos fotos---------------------------------------
 const modal = new bootstrap.Modal(document.getElementById("modalDesc"));
@@ -122,7 +103,7 @@ async function rellenarModal(evt) {
   modalLens.value = foto[0].lens;
   modalDesc.value = foto[0].description;
   modalAutor.value = foto[0].photographer;
-  //Comprobar el reinicio de las estrellitas
+  // Comprobar el reinicio de las estrellitas
   for (let j = 0; j < stars.length; j++) {
     if (stars[j].classList.contains("selected")) {
       stars[j].classList.remove("selected");
@@ -135,57 +116,63 @@ async function rellenarModal(evt) {
       stars[i].classList.add("selected");
     }
   }
-
-
-  // evt.target.dataset.id = foto[0].id;
-  // let score = 0;
-  // //Pintar Estrellas--------------------------------
-  // for (let i = 0; i < stars.length; i++) {
-  //   stars[i].addEventListener("click", async () => {
-  //     for (let j = 0; j <= i; j++) {
-  //       if (!stars[j].classList.contains("selected")) {
-  //         stars[j].classList.add("selected");
-  //       }
-  //     }
-  //     for (let j = i + 1; j < stars.length; j++) {
-  //       if (stars[j].classList.contains("selected")) {
-  //         stars[j].classList.remove("selected");
-  //       }
-  //     }
-
-  //     score = i + 1;
-  //     // Puntuar Fotos----------------------------------
-  //     const id = evt.target.dataset.id;
-  //     console.log(id)
-  //     if (id) {
-  //       await updatePhoto(id, score);
-  //     }
-
-  //     evt.target.dataset.id = "";
-  //   });
-  // }
-
-
 }
 //---------------Click Votar--------------------
 const modalVotar = new bootstrap.Modal(document.getElementById("modalVotar"));
-
+let score = 0;
 async function abrirPuntuar(evt) {
   if (evt.target.classList.contains("votar")) {
     //Votar
-    const id = evt.target.dataset.id;
-    console.log(id)
-    // const photo = await findPhotoById(id);
+    const id = (btVotar.dataset.id = evt.target.dataset.id);
 
-  }
+    // //Pintar Estrellas--------------------------------
+    const estrellitas = document.getElementsByClassName("puntuar");
+
+    // Comprobar el reinicio de las estrellitas
+    for (let j = 0; j < estrellitas.length; j++) {
+      if (estrellitas[j].classList.contains("selected")) {
+        estrellitas[j].classList.remove("selected");
+      }
+    }
+
+    for (let i = 0; i < estrellitas.length; i++) {
+      estrellitas[i].addEventListener("click", async () => {
+        for (let j = 0; j <= i; j++) {
+          if (!estrellitas[j].classList.contains("selected")) {
+            estrellitas[j].classList.add("selected");
+          }
+        }
+        for (let j = i + 1; j < estrellitas.length; j++) {
+          if (estrellitas[j].classList.contains("selected")) {
+            estrellitas[j].classList.remove("selected");
+          }
+        }
+        score = i + 1;
+      });
+    }
+  } 
   modalVotar.show();
 }
 
+//Botón votar
 
-
+const btVotar = document.getElementById("btVotar");
+btVotar.addEventListener("click", async () => {
+  modalVotar.hide();
+  const id = btVotar.dataset.id;
+  alert(id)
+  if (id) {
+    await updatePhoto(id, score);
+  }
+  await cargarGaleria();
+});
 
 //-----------------Click Borrar-----------------
-
+async function borrarFoto(evt) {
+  await deletePhoto(evt.target.dataset.id);
+  await cargarGaleria();
+  
+}
 
 
 
@@ -258,9 +245,12 @@ async function cargarGaleria() {
       if (evt.target.classList.contains("votar")) {
         abrirPuntuar(evt);
       }
+      if (evt.target.classList.contains("borrar")) {
+        borrarFoto(evt);
+      }
     });
   }
-    
+
 }
 
 cargarGaleria();

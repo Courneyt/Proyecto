@@ -141,7 +141,20 @@ footer {
     font-size: 1.5em;
 }
 
-.estrella.selected {
+.puntuar {
+
+    color: #ccc;
+    font-size: 1.5em;
+    cursor: pointer;
+
+}
+
+.puntuar:hover {
+    color: orange;
+}
+
+.estrella.selected,
+.puntuar.selected {
     color: orange;
 }
 
