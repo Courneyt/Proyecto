@@ -92,66 +92,6 @@ const PhotoSchema = new mongoose.Schema(
 	}
 );
 
-PhotoSchema.plugin(require('mongoose-autopopulate'));
-
-const PhotographerSchema = new mongoose.Schema(
-	{
-		name: {
-			type: String,
-			required: true,
-			trim: true,
-			minLength: 4
-		},
-		email: {
-			type: String,
-			required: true,
-			trim: true,
-			lowercase: true,
-			minLength: 1,
-			maxLength: 35
-		},
-		level: {
-			type: String,
-			required: true,
-			enum: ["Experto", "Principiante", "Intermedio"],
-		},
-		scores: [Number],
-		phone: {
-			type: String,
-			trim: true,
-			validate: {
-				validator: function (v) {
-					return /\d{3}-\d{3}-\d{3}/.test(v);
-				},
-				message: props => `${props.value} número de teléfono no válido!`
-			},
-		},
-
-	},
-	{
-		methods: {
-			rate: async function (score) {
-				this.scores.push(score);
-				return await this.save();
-			},
-		},
-		virtuals: {
-			averageScore: {
-				get() {
-					if (this.scores.length > 0)
-						return (
-							this.scores.reduce((acc, value) => acc + value, 0) /
-							this.scores.length
-						).toFixed(1);
-					else return NaN;
-				},
-			},
-		},
-		toJSON: { virtuals: true },
-	}
-);
-
-const Photographer = new mongoose.model("Photographer", PhotographerSchema);
 const Photo = new mongoose.model("Photo", PhotoSchema);
 
 // ***********Conexión*********************************
@@ -204,32 +144,3 @@ exports.ratePhoto = async function (photoId, score) {
 exports.deletePhoto = async function (photoId) {
 	return (await Photo.deleteOne({ _id: photoId })).deletedCount == 1;
 };
-
-
-
-exports.findPhotographersByName = async function (name) {
-	return await Photographer.find({ "name": name });
-};
-
-
-exports.savePhotographer = async function (photographerData) {
-	try {
-		const photographer = new Photographer(photographerData);
-		return await photographer.save();
-	} catch (err) {
-		return undefined;
-	}
-};
-
-
-exports.ratePhotographer = async function (photographerId, score) {
-	const photographer = await Photographer.findById(photographerId);
-	if (photographer) return await photographer.ratePhotographer(score);
-	else return undefined;
-};
-
-exports.updatePhotographer = async function (photographerId, name, phone, email) {
-	const photographer = await Photographer.findById(photographerId);
-	if (photographer) return await photographer.updateOne({ "name": name, "phone": phone, "email": email }, { runValidators: true });
-	else return undefined;
-}

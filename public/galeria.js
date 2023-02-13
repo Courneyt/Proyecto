@@ -18,57 +18,6 @@ if (document.location.search) {
 const btnGuardar = document.getElementById("btnGuardar");
 
 
-
-//Validar foto
-
-const form = document.getElementById('formulario');
-
-form.onsubmit = function () { validar() };
-
-function validar() {
-
-  var o = document.getElementById('frmFile');
-  var foto = o.files[0];
-  var c = 0;
-
-  // if (o.files.length == 0 || !(/\.(jpg|png)$/i).test(foto.name)) {
-  //   c = 1;
-  //   alert('Ingrese una imagen con alguno de los siguientes formatos: .jpeg/.jpg/.png.');
-  // } else {
-  var img = new Image();
-  img.onload = function () {
-    // if (this.width.toFixed(0) != 900 && this.height.toFixed(0) != 400) {
-    //   c = 1;
-    //   alert('Las medidas deben ser: 900 x 400');
-    //   alert(c);
-    // } else {
-    //   alert('Imagen correcta :)');
-    // }
-    const ancho = this.width.toFixed(0);
-    // alert(ancho);
-
-
-  };
-
-  img.src = URL.createObjectURL(foto);
-  // }
-  // if (c == 1)
-  //   event.preventDefault();
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //Datos Modal
 const modalTitulo = document.getElementById("titlePhoto");
 const modalFoto = document.getElementById("photo");
@@ -79,13 +28,6 @@ const modalDesc = document.getElementById("descripcion");
 const modalAutor = document.getElementById("autor");
 const stars = document.getElementsByClassName("estrella");
 
-// async function comprobarEstrellitas() {
-//   for (let j = 0; j < stars.length; j++) {
-//     if (stars[j].classList.contains("selected")) {
-//       stars[j].classList.remove("selected");
-//     }
-//   }
-// }
 
 //------------------Mostrar datos fotos---------------------------------------
 const modal = new bootstrap.Modal(document.getElementById("modalDesc"));
@@ -173,12 +115,6 @@ async function borrarFoto(evt) {
   await cargarGaleria();
   
 }
-
-
-
-
-
-
 
 
 // // ---- Filtro por categoria de fotos -----

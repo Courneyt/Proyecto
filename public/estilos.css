@@ -26,20 +26,8 @@ footer {
     color: white;
 }
 
-.contenidoNav {
-    margin-left: 650px;
-}
-
 #btSocial:hover {
     transform: scale(1.3);
-}
-
-#dibujosLandscape {
-    max-height: 400px;
-}
-
-#dibujosPortrait {
-    max-height: 800px;
 }
 
 .contenedorD {
