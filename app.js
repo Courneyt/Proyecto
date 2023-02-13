@@ -99,7 +99,7 @@ app.post("/upload", async (req, res) => {
 });
 
 app.patch("/fotos/:id", async (req, res) => {
-  const updatedFoto = await db.rate(req.params.id, req.body.score);
+  const updatedFoto = await db.ratePhoto(req.params.id, req.body.score);
   if (updatedFoto) res.sendStatus(204);
   else res.status(404).send(`No existe una foto con ID=${req.params.id}.`);
 });

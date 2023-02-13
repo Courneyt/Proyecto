@@ -102,12 +102,14 @@ const modalCamera = document.getElementById("camera");
 const modalLens = document.getElementById("lente");
 const modalDesc = document.getElementById("descripcion");
 const modalAutor = document.getElementById("autor");
+const stars = document.getElementsByClassName("estrella");
+
+
 
 //------------------Mostrar datos fotos---------------------------------------
 const modal = new bootstrap.Modal(document.getElementById("modalDesc"));
 
 async function rellenarModal(evt) {
-
   let ruta = evt.target.getAttribute("src");
   let rutaCorrecta = encodeURIComponent(ruta);
   const foto = await findPhotoByImg(rutaCorrecta);
@@ -120,81 +122,51 @@ async function rellenarModal(evt) {
   modalLens.value = foto[0].lens;
   modalDesc.value = foto[0].description;
   modalAutor.value = foto[0].photographer;
+  //Comprobar el reinicio de las estrellitas
+  for (let j =0; j < stars.length; j++) {
+    if (stars[j].classList.contains("selected")) {
+      stars[j].classList.remove("selected");
+    }
+  }
+  const rating = foto[0].averageScore;
+//Pintar estrellitas con la valoracion media.
+  for (let i = 0; i < stars.length; i++) {
+    if (i < rating) {
+      stars[i].classList.add("selected");
+    }
+  }
+
+
+  // evt.target.dataset.id = foto[0].id;
+  // let score = 0;
+  // //Pintar Estrellas--------------------------------
+  // for (let i = 0; i < stars.length; i++) {
+  //   stars[i].addEventListener("click", async () => {
+  //     for (let j = 0; j <= i; j++) {
+  //       if (!stars[j].classList.contains("selected")) {
+  //         stars[j].classList.add("selected");
+  //       }
+  //     }
+  //     for (let j = i + 1; j < stars.length; j++) {
+  //       if (stars[j].classList.contains("selected")) {
+  //         stars[j].classList.remove("selected");
+  //       }
+  //     }
+
+  //     score = i + 1;
+  //     // Puntuar Fotos----------------------------------
+  //     const id = evt.target.dataset.id;
+  //     console.log(id)
+  //     if (id) {
+  //       await updatePhoto(id, score);
+  //     }
+
+  //     evt.target.dataset.id = "";
+  //   });
+  // }
+
+
 }
-
-// Puntuar Fotos
-
-// const stars = document.getElementsByClassName("estrella");
-// for (let i = 0; i < stars.length; i++) {
-//   stars[i].addEventListener("click", () => {
-//     for (let j = 0; j <= i; j++) {
-//       stars[j].classList.add("selected");
-//     }
-//     for (let j = i ; j < stars.length; j++) {
-//       stars[j].classList.remove("selected");
-//     }
-//   });
-// }
-// const stars = document.getElementsByClassName("estrella");
-// for (let i = 0; i < stars.length; i++) {
-//   stars[i].addEventListener("click", () => {
-//     for (let j = 0; j <= i; j++) {
-//       if (!stars[j].classList.contains("selected")) {
-//         stars[j].classList.add("selected");
-//       }
-//     }
-//     for (let j = i + 1; j < stars.length; j++) {
-//       if (stars[j].classList.contains("selected")) {
-//         stars[j].classList.remove("selected");
-//       }
-//     }
-//   });
-// }
-
-// for (star of stars) {
-//   star.addEventListener("click", () => {
-//     for (let j = 0; j < stars.length; j++) {
-//       stars[j].classList.remove("selected");
-//     }
-//     for (let j = 0; j <= i; j++) {
-//       stars[j].classList.add("selected");
-//     }
-//   });
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // // ---- Filtro por categoria de fotos -----
 casillaTodas.addEventListener("click", clicEnTodas);

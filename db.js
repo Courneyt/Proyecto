@@ -201,7 +201,7 @@ exports.savePhoto = async function (photoData) {
 
 exports.ratePhoto = async function (photoId, score) {
 	const photo = await Photo.findById(photoId);
-	if (photo) return await photo.ratePhoto(score);
+	if (photo) return await photo.rate(score);
 	else return undefined;
 };
 
