@@ -123,13 +123,13 @@ async function rellenarModal(evt) {
   modalDesc.value = foto[0].description;
   modalAutor.value = foto[0].photographer;
   //Comprobar el reinicio de las estrellitas
-  for (let j =0; j < stars.length; j++) {
+  for (let j = 0; j < stars.length; j++) {
     if (stars[j].classList.contains("selected")) {
       stars[j].classList.remove("selected");
     }
   }
   const rating = foto[0].averageScore;
-//Pintar estrellitas con la valoracion media.
+  //Pintar estrellitas con la valoracion media.
   for (let i = 0; i < stars.length; i++) {
     if (i < rating) {
       stars[i].classList.add("selected");
@@ -167,6 +167,35 @@ async function rellenarModal(evt) {
 
 
 }
+//---------------Click Votar--------------------
+// document.getElementsByClassName("clicks")[0]
+//   .addEventListener("click", async (evt) => {
+//     if (evt.target.classList.contains("votar")) {
+//       abrirPuntuar(evt);
+//     }
+//   });
+
+// async function abrirPuntuar(evt) {
+//   if (evt.target.classList.contains("votar")) {
+//     //Votar
+//     const id = evt.target.dataset.id;
+//     // const photo = await findPhotoById(id);
+
+//   }
+// }
+
+
+
+
+//-----------------Click Borrar-----------------
+
+
+
+
+
+
+
+
 
 // // ---- Filtro por categoria de fotos -----
 casillaTodas.addEventListener("click", clicEnTodas);

@@ -145,12 +145,21 @@ footer {
     color: orange;
 }
 
-.star-icon {
-    position: absolute;
-    top: 0;
+.botoncillo {
+    font-size: 1.25em;
+    cursor: pointer;
     right: 0;
-    width: 50px;
-    height: 50px;
-    background-image: url(public/img/star-icon.png);
-    background-repeat: no-repeat;
+}
+
+.botoncillo:hover {
+    color: var(--clr-btn-hover);
+    transform: scale(1.1);
+}
+
+.fa-star-half-o {
+    --clr-btn-hover: rgba(253, 207, 2, 0.856);
+}
+
+.fa-trash-o {
+    --clr-btn-hover: red;
 }

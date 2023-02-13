@@ -6,14 +6,14 @@ var pug_match_html=/["&<>]/;function plantillaGaleria(locals) {var pug_html = ""
   if ('number' == typeof $$obj.length) {
       for (var pug_index0 = 0, $$l = $$obj.length; pug_index0 < $$l; pug_index0++) {
         var foto = $$obj[pug_index0];
-pug_html = pug_html + "\u003Cdiv class=\"col-lg-4 mb-1\"\u003E \u003Cimg" + (" class=\"w-100 mb-4 rounded fotos\""+" id=\"foto\""+pug_attr("src", foto.img, true, false)+" data-bs-toggle=\"modal\" data-bs-target=\"#modalDesc\" alt=\"\"") + "\u002F\u003E\u003Cdiv" + (" class=\"star-icon\""+pug_attr("data-id", foto.id, true, false)) + "\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E";
+pug_html = pug_html + "\u003Cdiv class=\"col-lg-4 mb-4 contFotos\"\u003E \u003Cimg" + (" class=\"w-100 mb-1 rounded fotos\""+" id=\"foto\""+pug_attr("src", foto.img, true, false)+" data-bs-toggle=\"modal\" data-bs-target=\"#modalDesc\" alt=\"\"") + "\u002F\u003E\u003Cdiv class=\"edicion d-flex flex-row-reverse\"\u003E\u003Ci" + (" class=\"botoncillo votar fa fa-star-half-o\""+pug_attr("data-id", foto._id, true, false)) + "\u003E\u003C\u002Fi\u003E\u003Ci" + (" class=\"botoncillo borrar fa fa-trash-o\""+pug_attr("data-id", foto._id, true, false)+" data-bs-toggle=\"modal\" data-bs-target=\"#modalVotar\"") + "\u003E\u003C\u002Fi\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E";
       }
   } else {
     var $$l = 0;
     for (var pug_index0 in $$obj) {
       $$l++;
       var foto = $$obj[pug_index0];
-pug_html = pug_html + "\u003Cdiv class=\"col-lg-4 mb-1\"\u003E \u003Cimg" + (" class=\"w-100 mb-4 rounded fotos\""+" id=\"foto\""+pug_attr("src", foto.img, true, false)+" data-bs-toggle=\"modal\" data-bs-target=\"#modalDesc\" alt=\"\"") + "\u002F\u003E\u003Cdiv" + (" class=\"star-icon\""+pug_attr("data-id", foto.id, true, false)) + "\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E";
+pug_html = pug_html + "\u003Cdiv class=\"col-lg-4 mb-4 contFotos\"\u003E \u003Cimg" + (" class=\"w-100 mb-1 rounded fotos\""+" id=\"foto\""+pug_attr("src", foto.img, true, false)+" data-bs-toggle=\"modal\" data-bs-target=\"#modalDesc\" alt=\"\"") + "\u002F\u003E\u003Cdiv class=\"edicion d-flex flex-row-reverse\"\u003E\u003Ci" + (" class=\"botoncillo votar fa fa-star-half-o\""+pug_attr("data-id", foto._id, true, false)) + "\u003E\u003C\u002Fi\u003E\u003Ci" + (" class=\"botoncillo borrar fa fa-trash-o\""+pug_attr("data-id", foto._id, true, false)+" data-bs-toggle=\"modal\" data-bs-target=\"#modalVotar\"") + "\u003E\u003C\u002Fi\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E";
     }
   }
 }).call(this);
